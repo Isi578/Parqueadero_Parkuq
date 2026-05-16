@@ -3,6 +3,6 @@ module unknown.parqueadero_parkuq {
     requires javafx.fxml;
 
 
-    opens unknown.parqueadero_parkuq to javafx.fxml;
-    exports unknown.parqueadero_parkuq;
+    opens parqueadero_parkuq to javafx.fxml;
+    exports parqueadero_parkuq;
 }
