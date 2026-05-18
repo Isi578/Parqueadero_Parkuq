@@ -1,5 +1,7 @@
 package parqueadero_parkuq.dataUtil;
 
+import parqueadero_parkuq.model.Parqueadero;
+
 public class Principal {
     private Parqueadero parqueadero;
 
