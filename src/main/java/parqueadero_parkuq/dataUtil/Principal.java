@@ -21,4 +21,5 @@ public class Principal {
     public Parqueadero getParqueadero() {
         return parqueadero;
     }
+
 }
