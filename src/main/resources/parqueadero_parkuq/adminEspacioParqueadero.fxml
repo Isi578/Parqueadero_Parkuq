@@ -1,14 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="parqueadero_parkuq.viewController.AdminEspacioParqueaderoViewController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="502.0" prefWidth="741.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="parqueadero_parkuq.viewController.AdminEspacioParqueaderoViewController">
+    <children>
+        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion espacios del parqueadero">
+                    <font>
+                        <Font name="Times New Roman" size="25.0" />
+                    </font>
+                </Text>
+                <Separator prefHeight="18.0" prefWidth="682.0">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </Separator>
+                <GridPane alignment="CENTER" hgap="10.0" vgap="10.0" VBox.vgrow="NEVER">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="LEFT" maxWidth="1.7976931348623157E308" percentWidth="15.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" percentWidth="44.0" />
+                        <ColumnConstraints halignment="LEFT" maxWidth="1.7976931348623157E308" percentWidth="21.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" percentWidth="50.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="Codigo:">
+                            <font>
+                                <Font name="Times New Roman" size="12.0" />
+                            </font></Label>
+                        <Label text="Tipo de espacio:" GridPane.columnIndex="2">
+                            <font>
+                                <Font name="Times New Roman" size="12.0" />
+                            </font></Label>
+                        <TextField fx:id="txtCodigo" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="250.0" GridPane.columnIndex="1">
+                            <GridPane.margin>
+                                <Insets />
+                            </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="txtEstado" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <GridPane.margin>
+                                <Insets />
+                            </GridPane.margin>
+                        </TextField>
+                        <Label text="Estado:" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="Times New Roman" size="12.0" />
+                            </font></Label>
+                        <ComboBox fx:id="comboBoxTipoEspacio" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="250.0" promptText="Seleccione un tipo de espacio" GridPane.columnIndex="3">
+                            <GridPane.margin>
+                                <Insets />
+                            </GridPane.margin>
+                        </ComboBox>
+                  <Label text="Vehiculo asignado:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtVehiculoAsignado" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                </GridPane>
+                <Separator prefHeight="18.0" prefWidth="682.0">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </Separator>
+                <GridPane alignment="CENTER" hgap="10.0">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints halignment="CENTER" />
+                        <ColumnConstraints halignment="CENTER" percentWidth="0.0" />
+                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Button fx:id="btnRegistrar" mnemonicParsing="false" onAction="#onRegistrar" prefWidth="80.0" text="Registar" GridPane.columnIndex="1">
+                            <font>
+                                <Font name="Times New Roman" size="12.0" />
+                            </font></Button>
+                        <Button fx:id="btnModificar" mnemonicParsing="false" onAction="#onModificar" prefHeight="26.0" prefWidth="80.0" text="Modificar" GridPane.columnIndex="2">
+                            <font>
+                                <Font name="Times New Roman" size="12.0" />
+                            </font></Button>
+                        <Button fx:id="btnDeshabilitar" mnemonicParsing="false" onAction="#onDeshabilitar" prefWidth="80.0" text="Deshabilitar" GridPane.columnIndex="3">
+                            <font>
+                                <Font name="Times New Roman" size="12.0" />
+                            </font></Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </GridPane>
+                <Separator prefHeight="18.0" prefWidth="682.0">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin></Separator>
+                <TableView fx:id="tableUsuario" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="721.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="tcCodigo" prefWidth="115.99999696016312" text="Codigo" />
+                        <TableColumn fx:id="tcTipoEspacio" prefWidth="124.79998779296875" text="Tipo de espacio" />
+                        <TableColumn fx:id="tcEstado" prefWidth="139.2000274658203" text="Estado" />
+                  <TableColumn fx:id="tcVehiculoAsignado" prefWidth="75.0" text="Vehiculo asignado" />
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </VBox>
+    </children>
 </AnchorPane>

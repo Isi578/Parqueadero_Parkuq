@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 import parqueadero_parkuq.dataUtil.Principal;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Objects;
 
 public class ParqueaderoApp extends Application {
 
@@ -16,19 +18,19 @@ public class ParqueaderoApp extends Application {
     public static Scene sceneAdministrador;
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws IOException {
         mainStage = stage;
 
         Principal.getInstance();
 
-        java.net.URL loginUrl = ParqueaderoApp.class.getResource("login.fxml");
-        java.net.URL operaUrl = ParqueaderoApp.class.getResource("opera.fxml");
-        java.net.URL adminUrl = ParqueaderoApp.class.getResource("admin.fxml");
+        URL loginUrl = ParqueaderoApp.class.getResource("/parqueadero_parkuq/login.fxml");
+        URL operaUrl = ParqueaderoApp.class.getResource("/parqueadero_parkuq/opera.fxml");
+        URL adminUrl = ParqueaderoApp.class.getResource("/parqueadero_parkuq/admin.fxml");
 
 
-        sceneLogin = new Scene(FXMLLoader.load(loginUrl));
-        sceneOperador = new Scene(FXMLLoader.load(operaUrl));
-        sceneAdministrador = new Scene(FXMLLoader.load(adminUrl));
+        sceneLogin = new Scene(FXMLLoader.load(Objects.requireNonNull(loginUrl)));
+        sceneOperador = new Scene(FXMLLoader.load(Objects.requireNonNull(operaUrl)));
+        sceneAdministrador = new Scene(FXMLLoader.load(Objects.requireNonNull(adminUrl)));
 
         goToLogin();
         mainStage.show();

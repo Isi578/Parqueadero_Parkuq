@@ -25,7 +25,7 @@ public class LoginViewController {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.parqueadero = Principal.getInstance().getParqueadero();
-        comboBoxUser.getItems().addAll(Datautil.OPERADOR, Datautil.ADMINISTRADOR);
+        comboBoxUser.getItems().addAll(Datautil.OPERARIO, Datautil.ADMINISTRADOR);
         txtAdvertencia.setText("");
     }
 
@@ -39,8 +39,7 @@ public class LoginViewController {
             return;
         }
 
-        // Autenticación usando las constantes de DataUtil
-        if (user.equals(Datautil.OPERADOR) && pass.equals(Datautil.OPERA_CONTRASENA)) {
+        if (user.equals(Datautil.OPERARIO) && pass.equals(Datautil.OPERA_CONTRASENA)) {
             ParqueaderoApp.goToOperador();
         } else if (user.equals(Datautil.ADMINISTRADOR) && pass.equals(Datautil.ADMIN_CONTRASENA)) {
             ParqueaderoApp.goToAdministrador();
