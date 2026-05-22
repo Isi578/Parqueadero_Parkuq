@@ -7,4 +7,7 @@ public class OperaSalidaVehiculoViewController {
     public void onSalida(ActionEvent actionEvent) {
     }
 
+    public void onBuscar(ActionEvent actionEvent) {
+
+    }
 }

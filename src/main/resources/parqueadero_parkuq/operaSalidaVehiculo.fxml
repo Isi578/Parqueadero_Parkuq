@@ -43,51 +43,39 @@
                                 <Insets />
                             </GridPane.margin>
                         </TextField>
-                        <Label text="Tarifa vehiculo:" GridPane.columnIndex="2">
-                            <font>
-                                <Font name="Times New Roman" size="12.0" />
-                            </font></Label>
-                        <ComboBox fx:id="comboBoxTIpoVehiuclo" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="250.0" promptText="Seleccione un tipo de vehiculo" GridPane.columnIndex="3">
-                            <GridPane.margin>
-                                <Insets />
-                            </GridPane.margin>
-                        </ComboBox>
                     </children>
                     <VBox.margin>
                         <Insets bottom="10.0" />
                     </VBox.margin>
                 </GridPane>
+            <GridPane alignment="CENTER" hgap="10.0" layoutX="20.0" layoutY="122.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" maxWidth="325.99998474121094" minWidth="10.0" prefWidth="120.40001525878904" />
+                  <ColumnConstraints halignment="CENTER" maxWidth="325.99998474121094" minWidth="0.0" prefWidth="222.8" />
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="523.0" minWidth="122.40000000000003" prefWidth="122.40000000000003" />
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="523.0" minWidth="222.00001525878906" prefWidth="222.00001525878906" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="4.000000238418579" minHeight="0.0" prefHeight="0.0" />
+                  <RowConstraints maxHeight="22.4" minHeight="10.0" prefHeight="22.4" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Button fx:id="btnSalida1" layoutX="330.0" layoutY="10.0" mnemonicParsing="false" onAction="#onSalida" prefHeight="22.0" prefWidth="88.0" text="Salida" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnBuscar1" layoutX="330.0" layoutY="10.0" mnemonicParsing="false" onAction="#onBuscar" prefHeight="220." prefWidth="88.0" text="Buscar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </GridPane>
                 <Separator prefHeight="18.0" prefWidth="682.0">
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
                 </Separator>
-                <GridPane alignment="CENTER" hgap="10.0">
-                    <columnConstraints>
-                  <ColumnConstraints halignment="CENTER" maxWidth="325.99998474121094" minWidth="10.0" prefWidth="120.40001525878904" />
-                        <ColumnConstraints halignment="CENTER" maxWidth="325.99998474121094" minWidth="0.0" prefWidth="120.40001525878904" />
-                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="523.0" minWidth="222.00001525878906" prefWidth="222.00001525878906" />
-                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="523.0" minWidth="222.00001525878906" prefWidth="222.00001525878906" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="4.000000238418579" minHeight="0.0" prefHeight="0.0" />
-                  <RowConstraints maxHeight="22.4" minHeight="10.0" prefHeight="22.4" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                    <children>
-                  <Button fx:id="btnSalida" layoutX="330.0" layoutY="10.0" mnemonicParsing="false" onAction="#onSalida" prefHeight="22.0" prefWidth="88.0" text="Salida" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Times New Roman" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" text="Button" />
-                    </children>
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-                    <opaqueInsets>
-                        <Insets />
-                    </opaqueInsets>
-                </GridPane>
                 <Separator prefHeight="18.0" prefWidth="682.0">
                     <opaqueInsets>
                         <Insets />
@@ -95,7 +83,7 @@
                     <VBox.margin>
                         <Insets />
                     </VBox.margin></Separator>
-                <TableView fx:id="tableUsuario" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="721.0" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tableSalida" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="721.0" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="tcPlaca" prefWidth="115.99999696016312" text="Placa" />
                         <TableColumn fx:id="tcNombreConductor" prefWidth="124.79998779296875" text="Tiempo total estacionamiento" />

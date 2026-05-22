@@ -114,7 +114,7 @@
                     <VBox.margin>
                         <Insets />
                     </VBox.margin></Separator>
-                <TableView fx:id="tableUsuario" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="721.0" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tableIngreso" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="721.0" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="tcPlaca" prefWidth="115.99999696016312" text="Placa" />
                   <TableColumn fx:id="tcTipoVehiculo" prefWidth="75.0" text="Tipo de vehiculo" />

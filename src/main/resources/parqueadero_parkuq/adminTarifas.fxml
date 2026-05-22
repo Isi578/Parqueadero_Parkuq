@@ -21,8 +21,8 @@
                 </Separator>
                 <GridPane alignment="CENTER" hgap="10.0" vgap="10.0" VBox.vgrow="NEVER">
                     <columnConstraints>
-                        <ColumnConstraints halignment="LEFT" maxWidth="1.7976931348623157E308" percentWidth="15.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" percentWidth="50.0" />
+                        <ColumnConstraints halignment="LEFT" maxWidth="1.7976931348623157E308" percentWidth="18.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" percentWidth="47.0" />
                         <ColumnConstraints halignment="LEFT" maxWidth="1.7976931348623157E308" percentWidth="15.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" percentWidth="50.0" />
                     </columnConstraints>
@@ -99,7 +99,7 @@
                     <VBox.margin>
                         <Insets />
                     </VBox.margin></Separator>
-                <TableView fx:id="tableUsuario" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="721.0" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tableTarifa" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="721.0" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="tcTipoVehiculo" prefWidth="115.99999696016312" text="Tipo de vehiculo" />
                         <TableColumn fx:id="tcValorHora" prefWidth="124.79998779296875" text="Valor por hora" />
