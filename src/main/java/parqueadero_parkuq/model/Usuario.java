@@ -1,14 +1,14 @@
 package parqueadero_parkuq.model;
 
-public class Usuario {
+public class Usuario implements IDescuento {
     private String nombreusuario;
     private String idUsuario;
     private TipoUsuario tipoUsuario;
 
     public Usuario(String nombreusuario, String idUsuario, TipoUsuario tipoUsuario) {
-        this.nombreusuario=nombreusuario;
-        this.idUsuario=idUsuario;
-        this.tipoUsuario=tipoUsuario;
+        this.nombreusuario = nombreusuario;
+        this.idUsuario = idUsuario;
+        this.tipoUsuario = tipoUsuario;
     }
 
     public String getNombreusuario() {
@@ -34,4 +34,20 @@ public class Usuario {
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
+
+    @Override
+    public double obtenerDescuento(TipoUsuario tipoUsuario) {
+        switch (tipoUsuario) {
+            case DOCENTE:
+                return 0.15;
+            case ESTUDIANTE:
+                return 0.25;
+            case ADMINISTRATIVO:
+                return 0.20;
+            default:
+                return 0;
+        }
+    }
+
+
 }
