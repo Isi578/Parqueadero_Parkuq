@@ -34,4 +34,11 @@ public class Tarifa {
     public void setDescuento(double descuento) {
         this.descuento = descuento;
     }
+
+    public double calcularTarifa(int horas, IDescuento usuario) {
+        double total = horas * valorHora;
+        double descuento = usuario.obtenerDescuento();
+        total -= total * descuento;
+        return total;
+    }
 }

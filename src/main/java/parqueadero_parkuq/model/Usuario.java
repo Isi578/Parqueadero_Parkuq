@@ -36,7 +36,7 @@ public class Usuario implements IDescuento {
     }
 
     @Override
-    public double obtenerDescuento(TipoUsuario tipoUsuario) {
+    public double obtenerDescuento() {
         switch (tipoUsuario) {
             case DOCENTE:
                 return 0.15;
