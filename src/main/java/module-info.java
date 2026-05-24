@@ -7,4 +7,5 @@ module parqueadero_parkuq {
     opens parqueadero_parkuq to javafx.fxml;
     exports parqueadero_parkuq;
     opens parqueadero_parkuq.viewController to javafx.fxml;
+    opens parqueadero_parkuq.model to javafx.base;
 }

@@ -108,7 +108,7 @@
                     <VBox.margin>
                         <Insets />
                     </VBox.margin></Separator>
-                <TableView fx:id="tableUsuario" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="721.0" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tableEspacio" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="721.0" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="tcCodigo" prefWidth="115.99999696016312" text="Codigo" />
                         <TableColumn fx:id="tcTipoEspacio" prefWidth="124.79998779296875" text="Tipo de espacio" />

@@ -19,10 +19,11 @@
                         <Insets />
                     </opaqueInsets>
                 </Separator>
-                <TableView fx:id="tableUsuario" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="721.0" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tableEspacio" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="721.0" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="tcPlaca" prefWidth="115.99999696016312" text="Tipo espacio" />
-                        <TableColumn fx:id="tcNombreConductor" prefWidth="124.79998779296875" text="Estado del espacio" />
+                        <TableColumn fx:id="tcCodigo" prefWidth="75.0" text="Código" />
+                        <TableColumn fx:id="tcTipoEspacio" prefWidth="115.99999696016312" text="Tipo Espacio" />
+                        <TableColumn fx:id="tcEstado" prefWidth="124.79998779296875" text="Estado" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

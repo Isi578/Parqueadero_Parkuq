@@ -4,6 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import parqueadero_parkuq.dataUtil.Principal;
+import parqueadero_parkuq.model.Parqueadero;
+import parqueadero_parkuq.model.TipoVehiculo;
 import parqueadero_parkuq.model.Vehiculo;
 
 import java.net.URL;
@@ -11,29 +15,36 @@ import java.util.ResourceBundle;
 
 /**
  * Controlador para la vista que muestra los vehículos actualmente en el parqueadero.
- * (operaVehiculoEnParqueadero.fxml).
  */
 public class OperaVehiculoEnParqueadero implements Initializable {
 
     @FXML
-    private TableView<Vehiculo> tableUsuario; // Recomendación: Cambiar fx:id a tableVehiculo en el FXML
-
+    private TableView<Vehiculo> tableVehiculo;
     @FXML
     private TableColumn<Vehiculo, String> tcPlaca;
-
     @FXML
     private TableColumn<Vehiculo, String> tcNombreConductor;
+    @FXML
+    private TableColumn<Vehiculo, TipoVehiculo> tcTipoVehiculo;
+    @FXML
+    private TableColumn<Vehiculo, String> tcHoraIngreso;
+    @FXML
+    private TableColumn<Vehiculo, Integer> tcEspacio;
 
-    /**
-     * Método de inicialización del controlador.
-     *
-     * @param location  La ubicación utilizada para resolver rutas relativas.
-     * @param resources Los recursos utilizados para localizar el objeto raíz.
-     */
+    private Parqueadero parqueadero;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Lógica de inicialización para mostrar los vehículos.
-        // Por ejemplo, configurar las columnas y cargar los datos de los vehículos
-        // que están actualmente en el parqueadero.
+        this.parqueadero = Principal.getInstance().getParqueadero();
+
+        // Configurar todas las columnas
+        tcPlaca.setCellValueFactory(new PropertyValueFactory<>("placa"));
+        tcNombreConductor.setCellValueFactory(new PropertyValueFactory<>("nombreConductor"));
+        tcTipoVehiculo.setCellValueFactory(new PropertyValueFactory<>("tipoVehiculo"));
+        tcHoraIngreso.setCellValueFactory(new PropertyValueFactory<>("horaIngreso"));
+        tcEspacio.setCellValueFactory(new PropertyValueFactory<>("espacioAsignado"));
+
+        // Filtrar la lista para mostrar solo los vehículos que están dentro
+        tableVehiculo.setItems(parqueadero.getListVehiculos().filtered(v -> v.getEstado()));
     }
 }

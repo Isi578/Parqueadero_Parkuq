@@ -19,13 +19,13 @@
                         <Insets />
                     </opaqueInsets>
                 </Separator>
-                <TableView fx:id="tableUsuario" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="721.0" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tableVehiculo" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="721.0" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="tcPlaca" prefWidth="115.99999696016312" text="Placa" />
                         <TableColumn fx:id="tcNombreConductor" prefWidth="124.79998779296875" text="Conductor" />
-                  <TableColumn prefWidth="75.0" text="Tipo vehiculo" />
-                  <TableColumn prefWidth="75.0" text="Hora ingreso" />
-                  <TableColumn prefWidth="75.0" text="Espacio" />
+                        <TableColumn fx:id="tcTipoVehiculo" prefWidth="75.0" text="Tipo vehiculo" />
+                        <TableColumn fx:id="tcHoraIngreso" prefWidth="75.0" text="Hora ingreso" />
+                        <TableColumn fx:id="tcEspacio" prefWidth="75.0" text="Espacio" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

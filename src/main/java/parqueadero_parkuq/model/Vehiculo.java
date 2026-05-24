@@ -163,7 +163,7 @@ public class Vehiculo {
     }
 
     /**
-     * Devuelve una representación en cadena del objeto Vehiculo.
+     * Devuelve una representación en cadena del objeto Vehículo.
      *
      * @return Una cadena con los detalles del vehículo.
      */

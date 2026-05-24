@@ -2,21 +2,21 @@ package parqueadero_parkuq.model;
 
 /**
  * Representa un espacio o lugar de estacionamiento dentro del parqueadero.
- * Cada espacio tiene un código único, un tipo, un estado (ocupado/libre) y puede tener un vehículo asignado.
+ * Cada espacio tiene un código único, un tipo, un estado y puede tener un vehículo asignado.
  */
 public class Espacio {
 
     private int codigo;
     private TipoEspacio tipoEspacio;
-    private boolean estado; // true para ocupado, false para libre
-    private String vehiculoAsignado; // Placa del vehículo que ocupa el espacio
+    private boolean estado;
+    private String vehiculoAsignado;
 
     /**
      * Constructor para crear una nueva instancia de Espacio.
      *
      * @param codigo           El código o número identificador del espacio.
-     * @param tipoEspacio      El tipo de espacio (ej. CUBIERTO, DESCUBIERTO).
-     * @param estado           El estado inicial del espacio (true si está ocupado, false si está libre).
+     * @param tipoEspacio      El tipo de espacio (ej. CARRO, MOTOCICLETA).
+     * @param estado           El estado inicial del espacio (true si está disponible, false si está ocupado).
      * @param vehiculoAsignado La placa del vehículo asignado, o null si está libre.
      */
     public Espacio(int codigo, TipoEspacio tipoEspacio, boolean estado, String vehiculoAsignado) {
@@ -26,20 +26,10 @@ public class Espacio {
         this.vehiculoAsignado = vehiculoAsignado;
     }
 
-    /**
-     * Obtiene el código del espacio.
-     *
-     * @return El código del espacio.
-     */
     public int getCodigo() {
         return codigo;
     }
 
-    /**
-     * Establece el código del espacio.
-     *
-     * @param codigo El nuevo código para el espacio.
-     */
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
@@ -102,8 +92,7 @@ public class Espacio {
      * Devuelve una representación en cadena del objeto Espacio.
      *
      * @return Una cadena con los detalles del espacio.
-     */
-    @Override
+     */    @Override
     public String toString() {
         return "Espacio{" +
                 "codigo=" + codigo +
@@ -111,5 +100,9 @@ public class Espacio {
                 ", estado=" + estado +
                 ", vehiculoAsignado='" + vehiculoAsignado + '\'' +
                 '}';
+    }
+
+    public String obtenerEstado() {
+        return estado ? "Disponible" : "Ocupado";
     }
 }
