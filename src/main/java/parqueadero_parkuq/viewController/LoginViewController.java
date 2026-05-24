@@ -1,4 +1,5 @@
 package parqueadero_parkuq.viewController;
+import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -9,7 +10,7 @@ import parqueadero_parkuq.model.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginViewController {
+public class LoginViewController implements Initializable {
 
     private Parqueadero parqueadero;
 
@@ -23,6 +24,7 @@ public class LoginViewController {
     private ComboBox<String> comboBoxUser;
 
 
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.parqueadero = Principal.getInstance().getParqueadero();
         comboBoxUser.getItems().addAll(Datautil.OPERARIO, Datautil.ADMINISTRADOR);
@@ -57,4 +59,3 @@ public class LoginViewController {
         alert.showAndWait();
     }
 }
-
