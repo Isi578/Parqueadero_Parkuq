@@ -1,6 +1,7 @@
 package parqueadero_parkuq.model;
 
 public class Vehiculo {
+
     private String placa;
     private TipoVehiculo tipoVehiculo;
     private String nombreConductor;
@@ -73,5 +74,18 @@ public class Vehiculo {
 
     public void setEstado(Boolean estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehiculo{" +
+                "placa='" + placa + '\'' +
+                ", tipoVehiculo=" + tipoVehiculo +
+                ", nombreConductor='" + nombreConductor + '\'' +
+                ", idConductor='" + idConductor + '\'' +
+                ", horaIngreso='" + horaIngreso + '\'' +
+                ", espacioAsignado=" + espacioAsignado +
+                ", estado=" + estado +
+                '}';
     }
 }

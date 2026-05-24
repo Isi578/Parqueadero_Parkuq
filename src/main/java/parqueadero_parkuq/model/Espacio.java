@@ -45,5 +45,15 @@ public class Espacio {
     public void setVehiculoAsignado(String vehiculoAsignado) {
         this.vehiculoAsignado = vehiculoAsignado;
     }
+
+    @Override
+    public String toString() {
+        return "Espacio{" +
+                "codigo=" + codigo +
+                ", tipoEspacio=" + tipoEspacio +
+                ", estado=" + estado +
+                ", vehiculoAsignado='" + vehiculoAsignado + '\'' +
+                '}';
+    }
 }
 

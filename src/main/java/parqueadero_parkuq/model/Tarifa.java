@@ -1,6 +1,7 @@
 package parqueadero_parkuq.model;
 
 public class Tarifa {
+
     private TipoVehiculo tipoVehiculo;
     private double valorHora;
     private double descuento;
@@ -33,6 +34,15 @@ public class Tarifa {
 
     public void setDescuento(double descuento) {
         this.descuento = descuento;
+    }
+
+    @Override
+    public String toString() {
+        return "Tarifa{" +
+                "tipoVehiculo=" + tipoVehiculo +
+                ", valorHora=" + valorHora +
+                ", descuento=" + descuento +
+                '}';
     }
 
     public double calcularTarifa(int horas, IDescuento usuario) {
