@@ -5,12 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import parqueadero_parkuq.dataUtil.Principal;
 import parqueadero_parkuq.model.Espacio;
 import parqueadero_parkuq.model.Parqueadero;
 import parqueadero_parkuq.model.TipoEspacio;
-
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -52,8 +50,8 @@ public class AdminEspacioParqueaderoViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         this.parqueadero = Principal.getInstance().getParqueadero();
 
-        this.tcCodigo.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getCodigo())));
-        this.tcTipoEspacio.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoEspacio().toString()));
+        this.tcCodigo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodigo()));
+        this.tcTipoEspacio.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoEspacio()()));
         this.tcVehiculoAsignado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getVehiculoAsignado()));
         this.tcEstado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().obtenerEstado()));
 

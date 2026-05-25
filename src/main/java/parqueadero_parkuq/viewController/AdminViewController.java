@@ -39,7 +39,5 @@ public class AdminViewController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Aquí se podría añadir lógica de inicialización si fuera necesario,
-        // como por ejemplo, cargar datos específicos al abrir el panel de admin.
     }
 }

@@ -14,9 +14,9 @@ public class Usuario implements IDescuento {
     /**
      * Constructor para crear una nueva instancia de Usuario.
      *
-     * @param nombreusuario El nombre completo del usuario.
-     * @param idUsuario     La identificación única del usuario.
-     * @param tipoUsuario   El tipo de usuario (ej. ESTUDIANTE, DOCENTE).
+     * @param nombreusuario
+     * @param idUsuario
+     * @param tipoUsuario
      */
     public Usuario(String nombreusuario, String idUsuario, TipoUsuario tipoUsuario) {
         this.nombreusuario = nombreusuario;

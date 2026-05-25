@@ -13,10 +13,10 @@ import java.util.List;
  */
 public class Parqueadero {
 
-    private ObservableList<Usuario> listUsuarios;
-    private ObservableList<Espacio> listEspacios;
-    private ObservableList<Tarifa> listTarifas;
-    private ObservableList<Vehiculo> listVehiculos;
+    private List<Usuario> listUsuarios;
+    private List<Espacio> listEspacios;
+    private List<Tarifa> listTarifas;
+    private List<Vehiculo> listVehiculos;
     private List<Administrador> listAdministrador;
     private List<Operario> listOperario;
 
@@ -25,15 +25,15 @@ public class Parqueadero {
      * Inicializa todas las listas de datos como listas vacías.
      */
     public Parqueadero() {
-        this.listUsuarios = FXCollections.observableArrayList();
-        this.listEspacios = FXCollections.observableArrayList();
-        this.listTarifas = FXCollections.observableArrayList();
-        this.listVehiculos = FXCollections.observableArrayList();
+        this.listUsuarios = new ArrayList<>();
+        this.listEspacios = new ArrayList<>();
+        this.listTarifas = new ArrayList<>();
+        this.listVehiculos = new ArrayList<>();
         this.listAdministrador = new ArrayList<>();
         this.listOperario = new ArrayList<>();
     }
 
-    public ObservableList<Usuario> getListUsuarios() {
+    public List<Usuario> getListUsuarios() {
         return listUsuarios;
     }
 
@@ -41,7 +41,7 @@ public class Parqueadero {
         this.listUsuarios = listUsuarios;
     }
 
-    public ObservableList<Espacio> getListEspacios() {
+    public List<Espacio> getListEspacios() {
         return listEspacios;
     }
 
@@ -49,7 +49,7 @@ public class Parqueadero {
         this.listEspacios = listEspacios;
     }
 
-    public ObservableList<Tarifa> getListTarifas() {
+    public List<Tarifa> getListTarifas() {
         return listTarifas;
     }
 
@@ -57,7 +57,7 @@ public class Parqueadero {
         this.listTarifas = listTarifas;
     }
 
-    public ObservableList<Vehiculo> getListVehiculos() {
+    public List<Vehiculo> getListVehiculos() {
         return listVehiculos;
     }
 
@@ -80,4 +80,55 @@ public class Parqueadero {
     public void setListOperario(List<Operario> listOperario) {
         this.listOperario = listOperario;
     }
+
+    /**
+     *
+     * @param idUsuario
+     * @return
+     */
+    public boolean verificarUsuario(String idUsuario) {
+        boolean existe = false;
+        for (Usuario usuario : listUsuarios) {
+            if (usuario.getIdUsuario().equals(idUsuario)) {
+                existe = true;
+            }
+        }
+        return existe;
+    }
+
+    /**
+     *
+     * @param usuario
+     * @return
+     *
+     */
+    public Usuario registrarUsuario(Usuario usuario) {
+        if (verificarUsuario(usuario.getIdUsuario())) {
+            this.listUsuarios.add(usuario);
+        }
+        return usuario;
+    }
+
+    /**
+     *
+     * @param placa
+     * @return
+     */
+    public boolean verificarVehiculo (String placa){
+        boolean existe = false;
+        for (Vehiculo vehiculo : listVehiculos){
+            if (vehiculo.getPlaca().equals(placa)){
+                existe = true;
+            }
+        }
+        return existe;
+    }
+
+    public Vehiculo registarVehiculo(Vehiculo vehiculo){
+        if (verificarVehiculo(vehiculo.getPlaca())){
+            this.listVehiculos.add(vehiculo);
+        }
+        return vehiculo;
+    }
+
 }

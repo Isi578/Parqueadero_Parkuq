@@ -1,11 +1,11 @@
 package parqueadero_parkuq.viewController;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import parqueadero_parkuq.dataUtil.Principal;
 import parqueadero_parkuq.model.Parqueadero;
 import parqueadero_parkuq.model.TipoUsuario;
@@ -20,6 +20,10 @@ import java.util.ResourceBundle;
  * Permite a los administradores realizar operaciones CRUD sobre los usuarios.
  */
 public class AdminUsuarioAutorizadoViewController implements Initializable {
+
+    private Parqueadero parqueadero;
+    private ObservableList<Usuario> listUsuarios;
+    private Usuario usuarioSeleccionado;
 
     @FXML
     private TableView<Usuario> tableUsuario;
@@ -51,9 +55,24 @@ public class AdminUsuarioAutorizadoViewController implements Initializable {
     @FXML
     private Button btnEliminar;
 
-    private Parqueadero parqueadero;
-    private Usuario usuarioSeleccionado;
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.parqueadero = Principal.getInstance().getParqueadero();
+        this.tcUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoUsuario().toString()));
+        this.tcNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombreusuario()));
+        this.tcIdentificacion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdUsuario()));
 
+        tableUsuario.setItems(parqueadero.getListUsuarios());
+        comboBoxUsuarios.getItems().addAll(TipoUsuario.values());
+
+        tableUsuario.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            usuarioSeleccionado = newSelection;
+            mostrarInformacionUsuario(usuarioSeleccionado);
+        });
+
+        btnActualizar.setDisable(true);
+        btnEliminar.setDisable(true);
+    }
     @FXML
     void onRegistrar(ActionEvent event) {
         Usuario nuevoUsuario = crearUsuarioDesdeFormulario();
@@ -106,27 +125,6 @@ public class AdminUsuarioAutorizadoViewController implements Initializable {
             mostrarAlerta("Eliminación Exitosa", "El usuario ha sido eliminado.", Alert.AlertType.INFORMATION);
             limpiarCampos();
         }
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        this.parqueadero = Principal.getInstance().getParqueadero();
-
-        // Configurar columnas usando expresiones lambda (más robusto con módulos)
-        this.tcUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoUsuario().toString()));
-        this.tcNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombreusuario()));
-        this.tcIdentificacion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdUsuario()));
-
-        tableUsuario.setItems(parqueadero.getListUsuarios());
-        comboBoxUsuarios.getItems().addAll(TipoUsuario.values());
-
-        tableUsuario.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            usuarioSeleccionado = newSelection;
-            mostrarInformacionUsuario(usuarioSeleccionado);
-        });
-
-        btnActualizar.setDisable(true);
-        btnEliminar.setDisable(true);
     }
 
     private void limpiarCampos() {

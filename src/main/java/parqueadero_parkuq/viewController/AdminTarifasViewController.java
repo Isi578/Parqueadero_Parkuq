@@ -47,7 +47,6 @@ public class AdminTarifasViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         this.parqueadero = Principal.getInstance().getParqueadero();
 
-        // Configurar columnas usando expresiones lambda
         this.tcTipoVehiculo.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTipoVehiculo()));
         this.tcValorHora.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getValorHora()).asObject());
         this.tcDescuento.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getDescuento()).asObject());
