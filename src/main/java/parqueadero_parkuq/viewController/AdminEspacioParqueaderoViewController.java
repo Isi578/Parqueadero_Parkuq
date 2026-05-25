@@ -53,7 +53,7 @@ public class AdminEspacioParqueaderoViewController implements Initializable {
         this.tcCodigo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodigo()));
         this.tcTipoEspacio.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoEspacio()()));
         this.tcVehiculoAsignado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getVehiculoAsignado()));
-        this.tcEstado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().obtenerEstado()));
+        this.tcEstado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().verificarEspacioOcupado()));
 
         tableEspacio.setItems(parqueadero.getListEspacios());
         comboBoxTipoEspacio.getItems().addAll(TipoEspacio.values());

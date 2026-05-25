@@ -101,8 +101,4 @@ public class Espacio {
                 ", vehiculoAsignado='" + vehiculoAsignado + '\'' +
                 '}';
     }
-
-    public String obtenerEstado() {
-        return estado ? "Disponible" : "Ocupado";
-    }
 }
