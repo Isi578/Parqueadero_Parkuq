@@ -16,7 +16,7 @@ public class Espacio {
      *
      * @param codigo           El código o número identificador del espacio.
      * @param tipoEspacio      El tipo de espacio (ej. CARRO, MOTOCICLETA).
-     * @param estado           El estado inicial del espacio (true si está disponible, false si está ocupado).
+     * @param estado           El estado inicial del espacio (true si está ocupado, false si está libre).
      * @param vehiculoAsignado La placa del vehículo asignado, o null si está libre.
      */
     public Espacio(int codigo, TipoEspacio tipoEspacio, boolean estado, String vehiculoAsignado) {
@@ -51,7 +51,6 @@ public class Espacio {
     public void setTipoEspacio(TipoEspacio tipoEspacio) {
         this.tipoEspacio = tipoEspacio;
     }
-
     /**
      * Verifica el estado del espacio.
      *
@@ -88,11 +87,7 @@ public class Espacio {
         this.vehiculoAsignado = vehiculoAsignado;
     }
 
-    /**
-     * Devuelve una representación en cadena del objeto Espacio.
-     *
-     * @return Una cadena con los detalles del espacio.
-     */    @Override
+    @Override
     public String toString() {
         return "Espacio{" +
                 "codigo=" + codigo +

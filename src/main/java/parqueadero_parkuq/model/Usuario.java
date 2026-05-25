@@ -14,12 +14,16 @@ public class Usuario implements IDescuento {
     /**
      * Constructor para crear una nueva instancia de Usuario.
      *
-     * @param nombreusuario
+     * @param nombreUsuario
      * @param idUsuario
      * @param tipoUsuario
      */
-    public Usuario(String nombreusuario, String idUsuario, TipoUsuario tipoUsuario) {
-        this.nombreusuario = nombreusuario;
+    public Usuario(String nombreUsuario, String idUsuario, TipoUsuario tipoUsuario) {
+        if(nombreUsuario == null || nombreUsuario.isEmpty()){
+            this.nombreusuario = "Sin nombre";
+        }else{
+            this.nombreusuario = nombreUsuario;
+        }
         this.idUsuario = idUsuario;
         this.tipoUsuario = tipoUsuario;
     }

@@ -13,7 +13,7 @@ public class Vehiculo {
     private String idConductor;
     private String horaIngreso;
     private int espacioAsignado;
-    private Boolean estado; // true si está dentro del parqueadero, false si ya salió.
+    private boolean estado; // true si está dentro del parqueadero, false si ya salió.
 
     /**
      * Constructor para crear una nueva instancia de Vehiculo.
@@ -27,12 +27,24 @@ public class Vehiculo {
      * @param estado          El estado del vehículo (true si está dentro, false si ha salido).
      */
     public Vehiculo(String placa, TipoVehiculo tipoVehiculo, String nombreConductor, String idConductor, String horaIngreso, int espacioAsignado, boolean estado) {
-        this.placa = placa;
+        if(placa == null || placa.isEmpty()){
+            this.placa = "SIN_PLACA";
+        }else{
+            this.placa = placa;
+        }
         this.tipoVehiculo = tipoVehiculo;
-        this.nombreConductor = nombreConductor;
+        if(nombreConductor == null || nombreConductor.isEmpty()){
+            this.nombreConductor = "Sin nombre";
+        }else{
+            this.nombreConductor = nombreConductor;
+        }
         this.idConductor = idConductor;
         this.horaIngreso = horaIngreso;
-        this.espacioAsignado = espacioAsignado;
+        if(espacioAsignado < 0){
+            this.espacioAsignado = 0;
+        }else{
+            this.espacioAsignado = espacioAsignado;
+        }
         this.estado = estado;
     }
 

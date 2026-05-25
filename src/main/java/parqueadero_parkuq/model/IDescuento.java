@@ -10,7 +10,7 @@ public interface IDescuento {
     /**
      * Calcula y devuelve el descuento aplicable para el objeto.
      *
-     * @return El valor del descuento como un double (ej. 0.15 para un 15%).
+     * @return El valor del descuento como un double
      */
     double obtenerDescuento();
 }

@@ -127,7 +127,7 @@ public class OperaIngresoVehiculoViewController implements Initializable {
         switch (tipoVehiculo) {
             case CARRO:
                 return TipoEspacio.CARRO;
-            case MOTOCILETA:
+            case MOTOCICLETA:
                 return TipoEspacio.MOTOCICLETA;
             case BICICLETA:
                 return TipoEspacio.BICICLETA;

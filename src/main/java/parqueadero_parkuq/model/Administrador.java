@@ -64,7 +64,6 @@ public class Administrador {
     public String toString() {
         return "Administrador{" +
                 "nombreRol='" + nombreRol + '\'' +
-                ", contrasena='" + contrasena + '\'' +
                 '}';
     }
 }

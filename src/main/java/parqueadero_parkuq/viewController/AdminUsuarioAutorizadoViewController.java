@@ -10,7 +10,6 @@ import parqueadero_parkuq.dataUtil.Principal;
 import parqueadero_parkuq.model.Parqueadero;
 import parqueadero_parkuq.model.TipoUsuario;
 import parqueadero_parkuq.model.Usuario;
-
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;

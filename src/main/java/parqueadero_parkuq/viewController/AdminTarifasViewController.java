@@ -133,7 +133,7 @@ public class AdminTarifasViewController implements Initializable {
         double valorHora = Double.parseDouble(txtValorHora.getText());
         Usuario usuarioTemporal = new Usuario("", "", tipoUsuario);
         double descuento = usuarioTemporal.obtenerDescuento();
-        return new Tarifa(tipoVehiculo, valorHora, descuento);
+        return new Tarifa(tipoVehiculo, valorHora);
     }
 
     private void mostrarInformacionTarifa(Tarifa tarifa) {

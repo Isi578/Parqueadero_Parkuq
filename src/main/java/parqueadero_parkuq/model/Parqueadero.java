@@ -1,8 +1,5 @@
 package parqueadero_parkuq.model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +34,7 @@ public class Parqueadero {
         return listUsuarios;
     }
 
-    public void setListUsuarios(ObservableList<Usuario> listUsuarios) {
+    public void setListUsuarios(List<Usuario> listUsuarios) {
         this.listUsuarios = listUsuarios;
     }
 
@@ -45,7 +42,7 @@ public class Parqueadero {
         return listEspacios;
     }
 
-    public void setListEspacios(ObservableList<Espacio> listEspacios) {
+    public void setListEspacios(List<Espacio> listEspacios) {
         this.listEspacios = listEspacios;
     }
 
@@ -53,7 +50,7 @@ public class Parqueadero {
         return listTarifas;
     }
 
-    public void setListTarifas(ObservableList<Tarifa> listTarifas) {
+    public void setListTarifas(List<Tarifa> listTarifas) {
         this.listTarifas = listTarifas;
     }
 
@@ -61,7 +58,7 @@ public class Parqueadero {
         return listVehiculos;
     }
 
-    public void setListVehiculos(ObservableList<Vehiculo> listVehiculos) {
+    public void setListVehiculos(List<Vehiculo> listVehiculos) {
         this.listVehiculos = listVehiculos;
     }
 
@@ -100,11 +97,15 @@ public class Parqueadero {
      * @param vehiculo
      * @return
      */
-    public Vehiculo registrarVehiculo(Vehiculo vehiculo){
-        if (verificarVehiculo(vehiculo.getPlaca())){
-            this.listVehiculos.add(vehiculo);
+    public boolean registrarVehiculo(Vehiculo vehiculo){
+        if(vehiculo == null){
+            return false;
         }
-        return vehiculo;
+        if(verificarVehiculo(vehiculo.getPlaca())){
+            listVehiculos.add(vehiculo);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -122,16 +123,46 @@ public class Parqueadero {
     }
 
     /**
+     * metodo para tener la lista de vehiculo que se encuentran adentro del parqueadero.
+     * @return
+     */
+    public ArrayList<Vehiculo> obtenerVehiculosDentro() {
+        ArrayList<Vehiculo> vehiculosDentro = new ArrayList<>();
+        for (Vehiculo vehiculo : listVehiculos) {
+            if (vehiculo.getEstado()) {
+                vehiculosDentro.add(vehiculo);
+            }
+        }
+        return vehiculosDentro;
+    }
+
+    /**
      * metodo para calcular el pago de un vehiculo.
      * @param vehiculo
      * @param horas
      * @return
      */
     public double calcularPago(Vehiculo vehiculo, int horas) {
+        double total = 0;
         Tarifa tarifa = buscarTarifa(vehiculo.getTipoVehiculo());
         Usuario usuario = buscarUsuario(vehiculo.getIdConductor());
-        double total = tarifa.calcularTarifa(horas, usuario);
+         total = tarifa.calcularTarifa(horas, usuario);
         return total;
+    }
+
+    /**
+     * metodo para registrar la salida de un vehiculo.
+     * @param placa
+     * @return
+     */
+    public boolean registrarSalida(String placa) {
+        Vehiculo vehiculo = buscarVehiculo(placa);
+        if (vehiculo != null) {
+            vehiculo.setEstado(false);
+            liberarEspacio(vehiculo.getEspacioAsignado());
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -176,6 +207,102 @@ public class Parqueadero {
             }
         }
         return null;
+    }
+
+    /**
+     * metodo para buscar un espacio disponible segun el timpo de espacio
+     * @param tipoEspacio
+     * @return
+     */
+    public Espacio buscarEspacioDisponible(TipoEspacio tipoEspacio) {
+        for (Espacio espacio : listEspacios) {
+            if (espacio.getTipoEspacio() == tipoEspacio &&
+                    espacio.isEstado() == false) {
+                return espacio;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * metodo para contar los espacios disponibles.
+     * @return
+     */
+    public int contarEspaciosDisponibles() {
+        int contador = 0;
+        for (Espacio espacio : listEspacios) {
+            if (!espacio.isEstado()) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+
+    /**
+     * metodo para contar los espacios ocupados.
+     * @return
+     */
+    public int contarEspaciosOcupados() {
+        int contador = 0;
+        for (Espacio espacio : listEspacios) {
+            if (espacio.isEstado()) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+
+    /**
+     * metodo para validar espacio disponibles.
+     * @param tipoEspacio
+     * @return
+     */
+    public boolean hayEspaciosDisponibles(TipoEspacio tipoEspacio) {
+        for (Espacio espacio : listEspacios) {
+            if (espacio.getTipoEspacio() == tipoEspacio &&
+                    espacio.isEstado() == false) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * metodo para asignar un espacio a un vehiculo.
+     * @param placa
+     * @param codigoEspacio
+     * @return
+     */
+    public boolean asignarEspacio(String placa, int codigoEspacio) {
+        Vehiculo vehiculo = buscarVehiculo(placa);
+        Espacio espacio = buscarEspacio(codigoEspacio);
+        if (vehiculo != null && espacio != null && espacio.isEstado() == false) {
+            espacio.setVehiculoAsignado(placa);
+            espacio.setEstado(true);
+            vehiculo.setEspacioAsignado(codigoEspacio);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * metodo para liberar un espacio.
+     * @param codigoEspacio
+     * @return
+     */
+    public boolean liberarEspacio(int codigoEspacio) {
+
+        Espacio espacio = buscarEspacio(codigoEspacio);
+
+        if (espacio != null) {
+
+            espacio.setVehiculoAsignado(null);
+            espacio.setEstado(false);
+
+            return true;
+        }
+
+        return false;
     }
 
     /**

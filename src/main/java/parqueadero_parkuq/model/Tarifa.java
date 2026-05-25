@@ -8,19 +8,15 @@ public class Tarifa {
 
     private TipoVehiculo tipoVehiculo;
     private double valorHora;
-    private double descuento; // Este campo parece no usarse en el cálculo, se podría revisar.
-
     /**
      * Constructor para crear una nueva instancia de Tarifa.
      *
      * @param tipoVehiculo El tipo de vehículo al que aplica la tarifa (ej. MOTO, CARRO).
      * @param valorHora    El costo por hora de parqueo.
-     * @param descuento    Un valor de descuento base (actualmente no utilizado en los cálculos).
-     */
-    public Tarifa(TipoVehiculo tipoVehiculo, double valorHora, double descuento) {
+     * */
+    public Tarifa(TipoVehiculo tipoVehiculo, double valorHora) {
         this.tipoVehiculo = tipoVehiculo;
         this.valorHora = valorHora;
-        this.descuento = descuento;
     }
 
     /**
@@ -60,24 +56,6 @@ public class Tarifa {
     }
 
     /**
-     * Obtiene el valor del descuento base.
-     *
-     * @return El valor del descuento.
-     */
-    public double getDescuento() {
-        return descuento;
-    }
-
-    /**
-     * Establece el valor del descuento base.
-     *
-     * @param descuento El nuevo valor del descuento.
-     */
-    public void setDescuento(double descuento) {
-        this.descuento = descuento;
-    }
-
-    /**
      * Devuelve una representación en cadena del objeto Tarifa.
      *
      * @return Una cadena con los detalles de la tarifa.
@@ -87,7 +65,6 @@ public class Tarifa {
         return "Tarifa{" +
                 "tipoVehiculo=" + tipoVehiculo +
                 ", valorHora=" + valorHora +
-                ", descuento=" + descuento +
                 '}';
     }
 
@@ -99,10 +76,13 @@ public class Tarifa {
      * @param usuario El usuario al que se le aplicará el descuento.
      * @return El costo total a pagar después de aplicar el descuento.
      */
-    public double calcularTarifa(int horas, IDescuento usuario) {
+    public double calcularTarifa(double horas, IDescuento usuario) {
+        if(horas < 0){
+            return 0;
+        }
         double total = horas * valorHora;
         double descuentoUsuario = usuario.obtenerDescuento();
-        total -= total * descuentoUsuario;
+        total = total - (total * descuentoUsuario);
         return total;
     }
 }

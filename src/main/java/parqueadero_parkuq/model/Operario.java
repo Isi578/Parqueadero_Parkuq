@@ -65,7 +65,6 @@ public class Operario {
     public String toString() {
         return "Operario{" +
                 "nombreRol='" + nombreRol + '\'' +
-                ", contrasena='" + contrasena + '\'' +
                 '}';
     }
 }

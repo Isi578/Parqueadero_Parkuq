@@ -13,7 +13,7 @@ public enum TipoVehiculo {
     /**
      * Vehículo de tipo motocicleta.
      */
-    MOTOCILETA,
+    MOTOCICLETA,
 
     /**
      * Vehículo de tipo bicicleta.
