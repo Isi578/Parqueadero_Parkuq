@@ -7,7 +7,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import parqueadero_parkuq.dataUtil.Principal;
 import parqueadero_parkuq.model.*;
-
 import java.net.URL;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
@@ -48,7 +47,6 @@ public class OperaSalidaVehiculoViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         this.parqueadero = Principal.getInstance().getParqueadero();
         btnSalida1.setDisable(true);
-
         tcPlaca.setCellValueFactory(new PropertyValueFactory<>("concepto"));
         tcNombreConductor.setCellValueFactory(new PropertyValueFactory<>("valor"));
     }

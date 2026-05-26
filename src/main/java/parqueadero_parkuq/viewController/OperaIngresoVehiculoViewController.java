@@ -7,7 +7,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import parqueadero_parkuq.dataUtil.Principal;
 import parqueadero_parkuq.model.*;
-
 import java.net.URL;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;

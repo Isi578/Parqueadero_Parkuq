@@ -1,17 +1,12 @@
 package parqueadero_parkuq.viewController;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import parqueadero_parkuq.dataUtil.Principal;
-import parqueadero_parkuq.model.Parqueadero;
-import parqueadero_parkuq.model.TipoUsuario;
-import parqueadero_parkuq.model.Usuario;
-
+import parqueadero_parkuq.model.*;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -63,12 +58,9 @@ public class AdminUsuarioAutorizadoViewController implements Initializable {
         tableUsuario.setItems(FXCollections.observableArrayList(parqueadero.getListUsuarios()));
         comboBoxUsuarios.getItems().addAll(TipoUsuario.values());
 
-        tableUsuario.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Usuario>() {
-            @Override
-            public void changed(ObservableValue<? extends Usuario> observable, Usuario oldValue, Usuario newValue) {
-                usuarioSeleccionado = newValue;
-                mostrarInformacionUsuario(usuarioSeleccionado);
-            }
+        tableUsuario.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            usuarioSeleccionado = newValue;
+            mostrarInformacionUsuario(usuarioSeleccionado);
         });
 
         btnActualizar.setDisable(true);

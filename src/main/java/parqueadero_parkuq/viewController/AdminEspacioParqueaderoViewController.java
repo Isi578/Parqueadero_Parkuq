@@ -1,17 +1,12 @@
 package parqueadero_parkuq.viewController;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import parqueadero_parkuq.dataUtil.Principal;
-import parqueadero_parkuq.model.Espacio;
-import parqueadero_parkuq.model.Parqueadero;
-import parqueadero_parkuq.model.TipoEspacio;
-
+import parqueadero_parkuq.model.*;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -69,12 +64,9 @@ public class AdminEspacioParqueaderoViewController implements Initializable {
         tableEspacio.setItems(FXCollections.observableArrayList(parqueadero.getListEspacios()));
         comboBoxTipoEspacio.getItems().addAll(TipoEspacio.values());
 
-        tableEspacio.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Espacio>() {
-            @Override
-            public void changed(ObservableValue<? extends Espacio> observable, Espacio oldValue, Espacio newValue) {
-                espacioSeleccionado = newValue;
-                mostrarInformacionEspacio(espacioSeleccionado);
-            }
+        tableEspacio.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            espacioSeleccionado = newValue;
+            mostrarInformacionEspacio(espacioSeleccionado);
         });
 
         btnModificar.setDisable(true);
