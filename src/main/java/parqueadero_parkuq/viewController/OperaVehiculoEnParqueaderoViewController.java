@@ -1,5 +1,7 @@
 package parqueadero_parkuq.viewController;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -11,12 +13,14 @@ import parqueadero_parkuq.model.TipoVehiculo;
 import parqueadero_parkuq.model.Vehiculo;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
  * Controlador para la vista que muestra los vehículos actualmente en el parqueadero.
  */
-public class OperaVehiculoEnParqueadero implements Initializable {
+public class OperaVehiculoEnParqueaderoViewController implements Initializable {
 
     @FXML
     private TableView<Vehiculo> tableVehiculo;
@@ -37,14 +41,30 @@ public class OperaVehiculoEnParqueadero implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         this.parqueadero = Principal.getInstance().getParqueadero();
 
-        // Configurar todas las columnas
         tcPlaca.setCellValueFactory(new PropertyValueFactory<>("placa"));
         tcNombreConductor.setCellValueFactory(new PropertyValueFactory<>("nombreConductor"));
         tcTipoVehiculo.setCellValueFactory(new PropertyValueFactory<>("tipoVehiculo"));
         tcHoraIngreso.setCellValueFactory(new PropertyValueFactory<>("horaIngreso"));
         tcEspacio.setCellValueFactory(new PropertyValueFactory<>("espacioAsignado"));
 
-        // Filtrar la lista para mostrar solo los vehículos que están dentro
-        tableVehiculo.setItems(parqueadero.getListVehiculos().filtered(v -> v.getEstado()));
+        cargarVehiculosActivos();
+    }
+
+    /**
+     * Filtra la lista de todos los vehículos para obtener solo los que están
+     * actualmente dentro del parqueadero y los muestra en la tabla.
+     */
+    private void cargarVehiculosActivos() {
+        List<Vehiculo> todosLosVehiculos = parqueadero.getListVehiculos();
+        List<Vehiculo> vehiculosActivos = new ArrayList<>();
+
+        for (Vehiculo vehiculo : todosLosVehiculos) {
+            if (vehiculo.getEstado()) {
+                vehiculosActivos.add(vehiculo);
+            }
+        }
+
+        ObservableList<Vehiculo> listaObservable = FXCollections.observableArrayList(vehiculosActivos);
+        tableVehiculo.setItems(listaObservable);
     }
 }

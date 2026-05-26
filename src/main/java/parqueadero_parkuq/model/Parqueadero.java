@@ -30,78 +30,126 @@ public class Parqueadero {
         this.listOperario = new ArrayList<>();
     }
 
+    /**
+     * Obtiene la lista de usuarios.
+     * @return La lista de usuarios.
+     */
     public List<Usuario> getListUsuarios() {
         return listUsuarios;
     }
 
+    /**
+     * Establece la lista de usuarios.
+     * @param listUsuarios La nueva lista de usuarios.
+     */
     public void setListUsuarios(List<Usuario> listUsuarios) {
         this.listUsuarios = listUsuarios;
     }
 
+    /**
+     * Obtiene la lista de espacios.
+     * @return La lista de espacios.
+     */
     public List<Espacio> getListEspacios() {
         return listEspacios;
     }
 
+    /**
+     * Establece la lista de espacios.
+     * @param listEspacios La nueva lista de espacios.
+     */
     public void setListEspacios(List<Espacio> listEspacios) {
         this.listEspacios = listEspacios;
     }
 
+    /**
+     * Obtiene la lista de tarifas.
+     * @return La lista de tarifas.
+     */
     public List<Tarifa> getListTarifas() {
         return listTarifas;
     }
 
+    /**
+     * Establece la lista de tarifas.
+     * @param listTarifas La nueva lista de tarifas.
+     */
     public void setListTarifas(List<Tarifa> listTarifas) {
         this.listTarifas = listTarifas;
     }
 
+    /**
+     * Obtiene la lista de vehículos.
+     * @return La lista de vehículos.
+     */
     public List<Vehiculo> getListVehiculos() {
         return listVehiculos;
     }
 
+    /**
+     * Establece la lista de vehículos.
+     * @param listVehiculos La nueva lista de vehículos.
+     */
     public void setListVehiculos(List<Vehiculo> listVehiculos) {
         this.listVehiculos = listVehiculos;
     }
 
+    /**
+     * Obtiene la lista de administradores.
+     * @return La lista de administradores.
+     */
     public List<Administrador> getListAdministrador() {
         return listAdministrador;
     }
 
+    /**
+     * Establece la lista de administradores.
+     * @param listAdministrador La nueva lista de administradores.
+     */
     public void setListAdministrador(List<Administrador> listAdministrador) {
         this.listAdministrador = listAdministrador;
     }
 
+    /**
+     * Obtiene la lista de operarios.
+     * @return La lista de operarios.
+     */
     public List<Operario> getListOperario() {
         return listOperario;
     }
 
+    /**
+     * Establece la lista de operarios.
+     * @param listOperario La nueva lista de operarios.
+     */
     public void setListOperario(List<Operario> listOperario) {
         this.listOperario = listOperario;
     }
 
     /**
-     * metodo para verficar que el vehiculo no este registrado.
-     * @param placa
-     * @return
+     * Verifica si un vehículo con la placa especificada ya existe en el sistema.
+     * @param placa La placa del vehículo a verificar.
+     * @return {@code true} si el vehículo existe, {@code false} en caso contrario.
      */
-    public boolean verificarVehiculo(String placa) {
-        for (Vehiculo vehiculo : listVehiculos) {
-            if (vehiculo.getPlaca().equals(placa)) {
-                return false;
+    public boolean vehiculoExiste(String placa){
+        for(Vehiculo vehiculo : listVehiculos){
+            if(vehiculo.getPlaca().equals(placa)){
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     /**
-     * metodo de registro de vehiculo.
-     * @param vehiculo
-     * @return
+     * Registra un nuevo vehículo en el parqueadero.
+     * @param vehiculo El vehículo a registrar.
+     * @return {@code true} si el registro fue exitoso, {@code false} si el vehículo ya existía o es nulo.
      */
     public boolean registrarVehiculo(Vehiculo vehiculo){
         if(vehiculo == null){
             return false;
         }
-        if(verificarVehiculo(vehiculo.getPlaca())){
+        if(!vehiculoExiste(vehiculo.getPlaca())){
             listVehiculos.add(vehiculo);
             return true;
         }
@@ -109,9 +157,9 @@ public class Parqueadero {
     }
 
     /**
-     * metodo para buscar un vehiculo.
-     * @param placa
-     * @return
+     * Busca un vehículo por su placa.
+     * @param placa La placa del vehículo a buscar.
+     * @return El objeto {@link Vehiculo} si se encuentra, o {@code null} si no existe.
      */
     public Vehiculo buscarVehiculo(String placa){
         for (Vehiculo vehiculo : listVehiculos) {
@@ -123,8 +171,8 @@ public class Parqueadero {
     }
 
     /**
-     * metodo para tener la lista de vehiculo que se encuentran adentro del parqueadero.
-     * @return
+     * Obtiene una lista de todos los vehículos que se encuentran actualmente dentro del parqueadero.
+     * @return Una {@link ArrayList} de vehículos con estado activo.
      */
     public ArrayList<Vehiculo> obtenerVehiculosDentro() {
         ArrayList<Vehiculo> vehiculosDentro = new ArrayList<>();
@@ -137,27 +185,31 @@ public class Parqueadero {
     }
 
     /**
-     * metodo para calcular el pago de un vehiculo.
-     * @param vehiculo
-     * @param horas
-     * @return
+     * Calcula el monto a pagar por el estacionamiento de un vehículo.
+     * @param vehiculo El vehículo para el cual se calcula el pago.
+     * @param horas El número de horas que el vehículo estuvo estacionado.
+     * @return El total a pagar, o 0 si los datos son inválidos.
      */
     public double calcularPago(Vehiculo vehiculo, int horas) {
-        double total = 0;
+        if(vehiculo == null || horas < 0){
+            return 0;
+        }
         Tarifa tarifa = buscarTarifa(vehiculo.getTipoVehiculo());
         Usuario usuario = buscarUsuario(vehiculo.getIdConductor());
-         total = tarifa.calcularTarifa(horas, usuario);
-        return total;
+        if(tarifa == null || usuario == null){
+            return 0;
+        }
+        return tarifa.calcularTarifa(horas, usuario);
     }
 
     /**
-     * metodo para registrar la salida de un vehiculo.
-     * @param placa
-     * @return
+     * Registra la salida de un vehículo del parqueadero.
+     * @param placa La placa del vehículo que sale.
+     * @return {@code true} si la salida fue exitosa, {@code false} en caso contrario.
      */
     public boolean registrarSalida(String placa) {
         Vehiculo vehiculo = buscarVehiculo(placa);
-        if (vehiculo != null) {
+        if(vehiculo != null && vehiculo.getEstado()) {
             vehiculo.setEstado(false);
             liberarEspacio(vehiculo.getEspacioAsignado());
             return true;
@@ -166,39 +218,48 @@ public class Parqueadero {
     }
 
     /**
-     * metodo para eliminar un vehiculo.
-     * @param placa
-     * @return
+     * Elimina un vehículo del sistema.
+     * @param placa La placa del vehículo a eliminar.
+     * @return {@code true} si la eliminación fue exitosa, {@code false} en caso contrario.
      */
     public boolean eliminarVehiculo(String placa){
         Vehiculo vehiculo = buscarVehiculo(placa);
         if (vehiculo != null) {
+            liberarEspacio(vehiculo.getEspacioAsignado());
             listVehiculos.remove(vehiculo);
             return true;
         }
-        return  false;
+        return false;
     }
 
     /**
-     * metodo para observar la lista de vehiculos.
-     * @return
+     * Obtiene una copia de la lista de todos los vehículos registrados.
+     * @return Una {@link ArrayList} con todos los vehículos.
      */
     public ArrayList<Vehiculo> obtenerVehiculos(){
         return new ArrayList<>(listVehiculos);
     }
 
     /**
-     * metodo para agregar un espacio.
-     * @param espacio
+     * Agrega un nuevo espacio al parqueadero.
+     * @param espacio El espacio a agregar.
+     * @return {@code true} si se agregó correctamente, {@code false} si el espacio ya existía o es nulo.
      */
-    public void agregarEspacio(Espacio espacio){
-        listEspacios.add(espacio);
+    public boolean agregarEspacio(Espacio espacio){
+        if(espacio == null){
+            return false;
+        }
+        if(buscarEspacio(espacio.getCodigo()) == null){
+            listEspacios.add(espacio);
+            return true;
+        }
+        return false;
     }
 
     /**
-     * metodo para buscar un espacio.
-     * @param codigo
-     * @return
+     * Busca un espacio por su código.
+     * @param codigo El código del espacio a buscar.
+     * @return El objeto {@link Espacio} si se encuentra, o {@code null} si no existe.
      */
     public Espacio buscarEspacio(int codigo){
         for (Espacio espacio : listEspacios){
@@ -210,14 +271,13 @@ public class Parqueadero {
     }
 
     /**
-     * metodo para buscar un espacio disponible segun el timpo de espacio
-     * @param tipoEspacio
-     * @return
+     * Busca un espacio disponible para un tipo de vehículo específico.
+     * @param tipoEspacio El tipo de espacio requerido.
+     * @return Un {@link Espacio} disponible, o {@code null} si no hay ninguno.
      */
     public Espacio buscarEspacioDisponible(TipoEspacio tipoEspacio) {
         for (Espacio espacio : listEspacios) {
-            if (espacio.getTipoEspacio() == tipoEspacio &&
-                    espacio.isEstado() == false) {
+            if (espacio.getTipoEspacio().equals(tipoEspacio) && !espacio.isEstado()) {
                 return espacio;
             }
         }
@@ -225,8 +285,8 @@ public class Parqueadero {
     }
 
     /**
-     * metodo para contar los espacios disponibles.
-     * @return
+     * Cuenta el número total de espacios disponibles en el parqueadero.
+     * @return El número de espacios libres.
      */
     public int contarEspaciosDisponibles() {
         int contador = 0;
@@ -239,8 +299,8 @@ public class Parqueadero {
     }
 
     /**
-     * metodo para contar los espacios ocupados.
-     * @return
+     * Cuenta el número total de espacios ocupados en el parqueadero.
+     * @return El número de espacios ocupados.
      */
     public int contarEspaciosOcupados() {
         int contador = 0;
@@ -253,30 +313,15 @@ public class Parqueadero {
     }
 
     /**
-     * metodo para validar espacio disponibles.
-     * @param tipoEspacio
-     * @return
-     */
-    public boolean hayEspaciosDisponibles(TipoEspacio tipoEspacio) {
-        for (Espacio espacio : listEspacios) {
-            if (espacio.getTipoEspacio() == tipoEspacio &&
-                    espacio.isEstado() == false) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * metodo para asignar un espacio a un vehiculo.
-     * @param placa
-     * @param codigoEspacio
-     * @return
+     * Asigna un vehículo a un espacio de parqueo.
+     * @param placa La placa del vehículo a asignar.
+     * @param codigoEspacio El código del espacio a ocupar.
+     * @return {@code true} si la asignación fue exitosa, {@code false} en caso contrario.
      */
     public boolean asignarEspacio(String placa, int codigoEspacio) {
         Vehiculo vehiculo = buscarVehiculo(placa);
         Espacio espacio = buscarEspacio(codigoEspacio);
-        if (vehiculo != null && espacio != null && espacio.isEstado() == false) {
+        if (vehiculo != null && espacio != null && !espacio.isEstado()) {
             espacio.setVehiculoAsignado(placa);
             espacio.setEstado(true);
             vehiculo.setEspacioAsignado(codigoEspacio);
@@ -286,29 +331,24 @@ public class Parqueadero {
     }
 
     /**
-     * metodo para liberar un espacio.
-     * @param codigoEspacio
-     * @return
+     * Libera un espacio de parqueo.
+     * @param codigoEspacio El código del espacio a liberar.
+     * @return {@code true} si la liberación fue exitosa, {@code false} si el espacio no se encontró.
      */
     public boolean liberarEspacio(int codigoEspacio) {
-
         Espacio espacio = buscarEspacio(codigoEspacio);
-
         if (espacio != null) {
-
             espacio.setVehiculoAsignado(null);
             espacio.setEstado(false);
-
             return true;
         }
-
         return false;
     }
 
     /**
-     * metodo para eliminar un espacio.
-     * @param codigo
-     * @return
+     * Elimina un espacio del parqueadero.
+     * @param codigo El código del espacio a eliminar.
+     * @return {@code true} si la eliminación fue exitosa, {@code false} en caso contrario.
      */
     public boolean eliminarEspacio(int codigo){
         Espacio espacio = buscarEspacio(codigo);
@@ -320,9 +360,9 @@ public class Parqueadero {
     }
 
     /**
-     * metodo para verificar que el espacio no este ocupado.
-     * @param placa
-     * @return
+     * Verifica si un vehículo con una placa dada está ocupando algún espacio.
+     * @param placa La placa del vehículo a verificar.
+     * @return {@code true} si el vehículo está ocupando un espacio, {@code false} en caso contrario.
      */
     public boolean verificarEspacioOcupado(String placa) {
         for (Espacio espacio : listEspacios) {
@@ -335,25 +375,33 @@ public class Parqueadero {
     }
 
     /**
-     * metodo para observar la lista de espacios.
-     * @return
+     * Obtiene una copia de la lista de todos los espacios.
+     * @return Una {@link ArrayList} con todos los espacios.
      */
     public ArrayList<Espacio> obtenerEspacios(){
         return new ArrayList<>(listEspacios);
     }
 
     /**
-     * metodo de registrar un usuario.
-     * @param usuario
+     * Registra un nuevo usuario en el sistema.
+     * @param usuario El usuario a registrar.
+     * @return {@code true} si el registro fue exitoso, {@code false} si el usuario ya existía o es nulo.
      */
-    public void registrarUsuario(Usuario usuario) {
-        listUsuarios.add(usuario);
+    public boolean registrarUsuario(Usuario usuario) {
+        if(usuario == null){
+            return false;
+        }
+        if(buscarUsuario(usuario.getIdUsuario()) == null){
+            listUsuarios.add(usuario);
+            return true;
+        }
+        return false;
     }
 
     /**
-     * metodo para buscar un
-     * @param idUsuario
-     * @return
+     * Busca un usuario por su ID.
+     * @param idUsuario El ID del usuario a buscar.
+     * @return El objeto {@link Usuario} si se encuentra, o {@code null} si no existe.
      */
     public Usuario buscarUsuario(String idUsuario) {
         for (Usuario usuario : listUsuarios) {
@@ -365,35 +413,28 @@ public class Parqueadero {
     }
 
     /**
-     * metodo para modificar un usuario.
-     * @param identificacion
-     * @param nuevoUsuario
-     * @return
+     * Modifica los datos de un usuario existente.
+     * @param identificacion El ID del usuario a modificar.
+     * @param nuevoUsuario Un objeto {@link Usuario} con los nuevos datos.
+     * @return {@code true} si la modificación fue exitosa, {@code false} en caso contrario.
      */
     public boolean modificarUsuario(String identificacion, Usuario nuevoUsuario) {
-        Usuario usuarioEncontrado =
-                buscarUsuario(identificacion);
+        Usuario usuarioEncontrado = buscarUsuario(identificacion);
         if (usuarioEncontrado != null) {
-            usuarioEncontrado.setNombreusuario(
-                    nuevoUsuario.getNombreusuario());
-
-            usuarioEncontrado.setTipoUsuario(
-                    nuevoUsuario.getTipoUsuario());
-
+            usuarioEncontrado.setNombreusuario(nuevoUsuario.getNombreusuario());
+            usuarioEncontrado.setTipoUsuario(nuevoUsuario.getTipoUsuario());
             return true;
         }
-
         return false;
     }
 
     /**
-     * metodo para eliminar un usuario.
-     * @param idUsuario
-     * @return
+     * Elimina un usuario del sistema.
+     * @param idUsuario El ID del usuario a eliminar.
+     * @return {@code true} si la eliminación fue exitosa, {@code false} en caso contrario.
      */
     public boolean eliminarUsuario(String idUsuario) {
-        Usuario usuario =
-                buscarUsuario(idUsuario);
+        Usuario usuario = buscarUsuario(idUsuario);
         if (usuario != null) {
             listUsuarios.remove(usuario);
             return true;
@@ -402,29 +443,29 @@ public class Parqueadero {
     }
 
     /**
-     * metodo para observar la lista de usuarios.
-     * @return
+     * Obtiene una copia de la lista de todos los usuarios autorizados.
+     * @return Una {@link ArrayList} con todos los usuarios.
      */
     public ArrayList<Usuario> obtenerUsuariosAutorizados(){
         return new ArrayList<>(listUsuarios);
     }
 
     /**
-     * metodo para agregar tarifa.
-     * @param tarifa
+     * Agrega una nueva tarifa al sistema.
+     * @param tarifa La tarifa a agregar.
      */
     public void agregarTarifa(Tarifa tarifa){
         listTarifas.add(tarifa);
     }
 
     /**
-     * metodo para buscar una tarifa.
-     * @param tipoVehiculo
-     * @return
+     * Busca una tarifa por tipo de vehículo.
+     * @param tipoVehiculo El tipo de vehículo para el cual se busca la tarifa.
+     * @return La {@link Tarifa} correspondiente, o {@code null} si no se encuentra.
      */
     public Tarifa buscarTarifa(TipoVehiculo tipoVehiculo){
         for(Tarifa tarifa : listTarifas){
-            if(tarifa.getTipoVehiculo() == tipoVehiculo){
+            if(tarifa.getTipoVehiculo().equals(tipoVehiculo)){
                 return tarifa;
             }
         }
@@ -432,12 +473,10 @@ public class Parqueadero {
     }
 
     /**
-     * metodo para observar la lista de tarifas.
-     * @return
+     * Obtiene una copia de la lista de todas las tarifas.
+     * @return Una {@link ArrayList} con todas las tarifas.
      */
     public ArrayList<Tarifa> obtenerTarifas(){
         return new ArrayList<>(listTarifas);
     }
-
-
 }

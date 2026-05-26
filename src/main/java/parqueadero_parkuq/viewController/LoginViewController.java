@@ -10,6 +10,10 @@ import parqueadero_parkuq.model.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador para la vista de inicio de sesión (login.fxml).
+ * Gestiona la autenticación de los usuarios (administradores y operarios).
+ */
 public class LoginViewController implements Initializable {
 
     private Parqueadero parqueadero;
@@ -23,7 +27,13 @@ public class LoginViewController implements Initializable {
     @FXML
     private ComboBox<String> comboBoxUser;
 
-
+    /**
+     * Método de inicialización del controlador.
+     * Se ejecuta cuando se carga la vista y prepara los componentes iniciales.
+     *
+     * @param url La ubicación utilizada para resolver rutas relativas.
+     * @param resourceBundle Los recursos utilizados para localizar el objeto raíz.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.parqueadero = Principal.getInstance().getParqueadero();
@@ -31,6 +41,13 @@ public class LoginViewController implements Initializable {
         txtAdvertencia.setText("");
     }
 
+    /**
+     * Maneja el evento de clic en el botón "Login".
+     * Valida las credenciales y redirige al usuario a la vista correspondiente
+     * (administrador u operario) si la autenticación es exitosa.
+     *
+     * @param event El evento de acción que disparó el método.
+     */
     @FXML
     void login(ActionEvent event) {
         String user = comboBoxUser.getSelectionModel().getSelectedItem();
@@ -51,6 +68,13 @@ public class LoginViewController implements Initializable {
         }
     }
 
+    /**
+     * Muestra una ventana de alerta con un título, contenido y tipo de alerta específicos.
+     *
+     * @param titulo El título de la ventana de alerta.
+     * @param contenido El mensaje principal que se mostrará en la alerta.
+     * @param alertType El tipo de alerta (ej. ERROR, WARNING, INFORMATION).
+     */
     private void mostrarAlerta(String titulo, String contenido, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(titulo);

@@ -26,10 +26,20 @@ public class Espacio {
         this.vehiculoAsignado = vehiculoAsignado;
     }
 
+    /**
+     * Obtiene el código del espacio.
+     *
+     * @return El código del espacio.
+     */
     public int getCodigo() {
         return codigo;
     }
 
+    /**
+     * Establece el código del espacio.
+     *
+     * @param codigo El nuevo código del espacio.
+     */
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
@@ -87,6 +97,11 @@ public class Espacio {
         this.vehiculoAsignado = vehiculoAsignado;
     }
 
+    /**
+     * Devuelve una representación en cadena del objeto Espacio.
+     *
+     * @return Una cadena con los detalles del espacio.
+     */
     @Override
     public String toString() {
         return "Espacio{" +

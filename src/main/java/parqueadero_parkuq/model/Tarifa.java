@@ -8,15 +8,19 @@ public class Tarifa {
 
     private TipoVehiculo tipoVehiculo;
     private double valorHora;
+    private double descuento;
+
     /**
      * Constructor para crear una nueva instancia de Tarifa.
      *
      * @param tipoVehiculo El tipo de vehículo al que aplica la tarifa (ej. MOTO, CARRO).
      * @param valorHora    El costo por hora de parqueo.
-     * */
-    public Tarifa(TipoVehiculo tipoVehiculo, double valorHora) {
+     * @param descuento    El descuento aplicable a la tarifa.
+     */
+    public Tarifa(TipoVehiculo tipoVehiculo, double valorHora, double descuento) {
         this.tipoVehiculo = tipoVehiculo;
         this.valorHora = valorHora;
+        this.descuento = descuento;
     }
 
     /**
@@ -56,6 +60,24 @@ public class Tarifa {
     }
 
     /**
+     * Obtiene el descuento de la tarifa.
+     *
+     * @return El descuento.
+     */
+    public double getDescuento() {
+        return descuento;
+    }
+
+    /**
+     * Establece el descuento de la tarifa.
+     *
+     * @param descuento El nuevo descuento.
+     */
+    public void setDescuento(double descuento) {
+        this.descuento = descuento;
+    }
+
+    /**
      * Devuelve una representación en cadena del objeto Tarifa.
      *
      * @return Una cadena con los detalles de la tarifa.
@@ -65,6 +87,7 @@ public class Tarifa {
         return "Tarifa{" +
                 "tipoVehiculo=" + tipoVehiculo +
                 ", valorHora=" + valorHora +
+                ", descuento=" + descuento +
                 '}';
     }
 

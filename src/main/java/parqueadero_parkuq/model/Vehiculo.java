@@ -13,7 +13,7 @@ public class Vehiculo {
     private String idConductor;
     private String horaIngreso;
     private int espacioAsignado;
-    private boolean estado; // true si está dentro del parqueadero, false si ya salió.
+    private boolean estado;
 
     /**
      * Constructor para crear una nueva instancia de Vehiculo.
