@@ -1,17 +1,13 @@
 package parqueadero_parkuq.viewController;
 
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
 import parqueadero_parkuq.dataUtil.Principal;
 import parqueadero_parkuq.model.*;
-
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -63,25 +59,19 @@ public class AdminTarifasViewController implements Initializable {
         this.tcValorHora.setCellValueFactory(new PropertyValueFactory<>("valorHora"));
         this.tcDescuento.setCellValueFactory(new PropertyValueFactory<>("descuento"));
 
-        this.tcTotal.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Tarifa, Double>, ObservableValue<Double>>() {
-            @Override
-            public ObservableValue<Double> call(TableColumn.CellDataFeatures<Tarifa, Double> param) {
-                Tarifa tarifa = param.getValue();
-                double total = tarifa.getValorHora() * (1 - tarifa.getDescuento());
-                return new SimpleDoubleProperty(total).asObject();
-            }
+        this.tcTotal.setCellValueFactory(param -> {
+            Tarifa tarifa = param.getValue();
+            double total = tarifa.getValorHora() * (1 - tarifa.getDescuento());
+            return new SimpleDoubleProperty(total).asObject();
         });
 
         this.comboBoxTipoVehiculo.getItems().addAll(TipoVehiculo.values());
         this.comboBoxTipoUsuario.getItems().addAll(TipoUsuario.values());
         this.tableTarifa.setItems(FXCollections.observableArrayList(parqueadero.getListTarifas()));
 
-        tableTarifa.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tarifa>() {
-            @Override
-            public void changed(ObservableValue<? extends Tarifa> observable, Tarifa oldValue, Tarifa newValue) {
-                tarifaSeleccionada = newValue;
-                mostrarInformacionTarifa(tarifaSeleccionada);
-            }
+        tableTarifa.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            tarifaSeleccionada = newValue;
+            mostrarInformacionTarifa(tarifaSeleccionada);
         });
 
         btnActualizar.setDisable(true);

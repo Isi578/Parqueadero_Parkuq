@@ -8,10 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import parqueadero_parkuq.dataUtil.Principal;
-import parqueadero_parkuq.model.Parqueadero;
-import parqueadero_parkuq.model.TipoVehiculo;
-import parqueadero_parkuq.model.Vehiculo;
-
+import parqueadero_parkuq.model.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;

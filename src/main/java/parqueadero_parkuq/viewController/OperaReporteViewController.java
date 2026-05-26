@@ -3,15 +3,11 @@ package parqueadero_parkuq.viewController;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import parqueadero_parkuq.dataUtil.Principal;
-import parqueadero_parkuq.model.Parqueadero;
-import parqueadero_parkuq.model.ReporteDiario;
-import parqueadero_parkuq.model.Vehiculo;
-
+import parqueadero_parkuq.model.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -139,17 +135,4 @@ public class OperaReporteViewController implements Initializable {
         return mayorPermanencia.getPlaca() + " (" + maxMinutos + " min)";
     }
 
-    /**
-     * Muestra una ventana de alerta con un título, contenido y tipo de alerta específicos.
-     * @param titulo El título de la ventana de alerta.
-     * @param contenido El mensaje principal que se mostrará en la alerta.
-     * @param alertType El tipo de alerta (ej. ERROR, WARNING, INFORMATION).
-     */
-    private void mostrarAlerta(String titulo, String contenido, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(contenido);
-        alert.showAndWait();
-    }
 }

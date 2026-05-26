@@ -12,10 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import parqueadero_parkuq.dataUtil.Principal;
-import parqueadero_parkuq.model.Espacio;
-import parqueadero_parkuq.model.Parqueadero;
-import parqueadero_parkuq.model.TipoEspacio;
-
+import parqueadero_parkuq.model.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,16 +50,11 @@ public class OperaEspacioDisponibleViewController implements Initializable {
 
         tcCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         tcTipoEspacio.setCellValueFactory(new PropertyValueFactory<>("tipoEspacio"));
-        tcEstado.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Espacio, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Espacio, String> param) {
-                return new SimpleStringProperty(param.getValue().isEstado() ? "Ocupado" : "Disponible");
-            }
-        });
+        tcEstado.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().isEstado() ? "Ocupado" : "Disponible"));
 
         if (comboBoxFiltro != null) {
             comboBoxFiltro.getItems().addAll(TipoEspacio.values());
-            comboBoxFiltro.getItems().add(null); // Para la opción "Todos"
+            comboBoxFiltro.getItems().add(null);
         }
 
         filtrarTabla();
@@ -91,7 +83,7 @@ public class OperaEspacioDisponibleViewController implements Initializable {
         List<Espacio> espaciosFiltrados = new ArrayList<>();
 
         for (Espacio espacio : todosLosEspacios) {
-            if (!espacio.isEstado()) { // Solo espacios disponibles
+            if (!espacio.isEstado()) {
                 if (tipoSeleccionado == null || espacio.getTipoEspacio() == tipoSeleccionado) {
                     espaciosFiltrados.add(espacio);
                 }
