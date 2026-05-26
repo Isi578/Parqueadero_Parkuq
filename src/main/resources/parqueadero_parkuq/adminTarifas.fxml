@@ -54,7 +54,7 @@
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="comboBoxTipousuario" layoutX="115.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="250.0" promptText="Seleccione un tipo de usuario" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="comboBoxTipoUsuario" layoutX="115.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="250.0" promptText="Seleccione un tipo de usuario" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                     </children>
                     <VBox.margin>
                         <Insets bottom="10.0" />

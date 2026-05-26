@@ -33,15 +33,16 @@ public class Datautil {
         parqueadero.getListUsuarios().add(user1);
         parqueadero.getListUsuarios().add(user2);
         parqueadero.getListUsuarios().add(user3);
+        parqueadero.getListUsuarios().add(user4);
 
         for (int i = 1; i <= 5; i++) {
-            parqueadero.getListEspacios().add(new Espacio(i, TipoEspacio.CARRO, true, null));
+            parqueadero.getListEspacios().add(new Espacio(i, TipoEspacio.CARRO, false, null));
         }
         for (int i = 6; i <= 10; i++) {
-            parqueadero.getListEspacios().add(new Espacio(i, TipoEspacio.MOTOCICLETA, true, null));
+            parqueadero.getListEspacios().add(new Espacio(i, TipoEspacio.MOTOCICLETA, false, null));
         }
         for (int i = 11; i<=20; i++){
-            parqueadero.getListEspacios().add(new Espacio(i, TipoEspacio.BICICLETA, true, null));
+            parqueadero.getListEspacios().add(new Espacio(i, TipoEspacio.BICICLETA, false, null));
         }
         return parqueadero;
     }
